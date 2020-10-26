@@ -13,12 +13,14 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${MS1}. Hello, ${MS2}. Hello, ${MS3}. Hello, ${MS4}"   
-                MS1_TO_DEPLOY = MS1
-                MS2_TO_DEPLOY = MS2
-                env.MS3_TO_DEPLOY = MS3
-                env.MS4_TO_DEPLOY = MS4
-                echo "${env}"      
+                script {
+                    echo "Hello, ${MS1}. Hello, ${MS2}. Hello, ${MS3}. Hello, ${MS4}"   
+                    MS1_TO_DEPLOY = MS1
+                    MS2_TO_DEPLOY = MS2
+                    env.MS3_TO_DEPLOY = MS3
+                    env.MS4_TO_DEPLOY = MS4
+                    echo "${env}"           
+                }
             }
         }
         stage('Select single service') {
