@@ -31,9 +31,11 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${MS5}."  
-                env.MS5_TO_DEPLOY = MS5
-                echo "${env}"  
+                script {
+                    echo "Hello, ${MS5}."  
+                    env.MS5_TO_DEPLOY = MS5
+                    echo "${env}"  
+                }
             }
         }
     }
