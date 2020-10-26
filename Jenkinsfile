@@ -19,9 +19,9 @@ pipeline {
         stage('Select single service') {
             input {
                 message "Select single micro services to deploy?"
-                parameters [
+                parameters {
                     choice(name: 'MS5-separate-param', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'second param with single option')   
-                ]
+                }
             }
             steps {
                 echo "Hello, ${MS5-separate-param}"         
