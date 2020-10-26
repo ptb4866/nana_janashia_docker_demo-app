@@ -6,8 +6,8 @@ pipeline {
                 message "Select all micro services to deploy?"
                 ok "All selected!"
                 parameters {
-                    choice(name: 'MS1', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'input ms')
-                    choice(name: 'MS2', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'input ms')
+                    choice(name: 'MS1', choices: ['1.1.0', '1.2.0', '1.3.0'], defaultValue: '', description: 'input ms')
+                    choice(name: 'MS2', choices: ['1.1.0', '1.2.0', '1.3.0'], defaultValue: '1.2.0', description: 'input ms')
                     choice(name: 'MS3', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'input ms')
                     choice(name: 'MS4', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'input ms')
                 }
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, {MS5-separate-param}"         
+                echo "Hello, ${params.MS5-separate-param}"         
             }
         }
     }
