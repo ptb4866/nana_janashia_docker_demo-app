@@ -18,8 +18,7 @@ pipeline {
                     MS1_TO_DEPLOY = MS1
                     MS2_TO_DEPLOY = MS2
                     env.MS3_TO_DEPLOY = MS3
-                    env.MS4_TO_DEPLOY = MS4
-                    echo "${env}"           
+                    env.MS4_TO_DEPLOY = MS4      
                 }
             }
         }
@@ -34,7 +33,9 @@ pipeline {
                 script {
                     echo "Hello, ${MS5}."  
                     env.MS5_TO_DEPLOY = MS5
-                    echo "${env}"  
+                    echo "${MS1_TO_DEPLOY}"
+                    echo "${MS4_TO_DEPLOY}"
+                    echo "${MS5_TO_DEPLOY}"  
                 }
             }
         }
