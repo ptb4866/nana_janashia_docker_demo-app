@@ -13,7 +13,8 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${MS1}. Hello, ${MS2}. Hello, ${MS3}. Hello, ${MS4}"         
+                echo "Hello, ${MS1}. Hello, ${MS2}. Hello, ${MS3}. Hello, ${MS4}"   
+                echo ${params}      
             }
         }
         stage('Select single service') {
@@ -24,7 +25,8 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${MS5}. Hello, ${MS1}."         
+                echo "Hello, ${MS5}."     
+                echo ${params}    
             }
         }
     }
