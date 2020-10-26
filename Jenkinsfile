@@ -13,7 +13,7 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${params.MS1-param}. Hello, ${params.MS2-param}. Hello, ${params.MS3-param}. Hello, ${params.MS4$-param}"         
+                echo "Hello, ${params.MS1-param}. Hello, ${params.MS2-param}. Hello, ${params.MS3-param}. Hello, ${params.MS4-param}"         
             }
         }
         stage('Select single service') {
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, $params.{MS5-separate-param}"         
+                echo "Hello, {MS5-separate-param}"         
             }
         }
     }
