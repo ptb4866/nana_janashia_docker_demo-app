@@ -13,18 +13,18 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${MS1}. Hello, ${MS2}. Hello, ${params.MS3}. Hello, ${params.MS4}"         
+                echo "Hello, ${MS1}. Hello, ${MS2}. Hello, ${MS3}. Hello, ${MS4}"         
             }
         }
         stage('Select single service') {
             input {
                 message "Select single micro services to deploy?"
                 parameters {
-                    choice(name: 'MS5-separate-param', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'second param with single option')   
+                    choice(name: 'MS5', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'second param with single option')   
                 }
             }
             steps {
-                echo "Hello, ${params.MS5-separate-param}"         
+                echo "Hello, ${MS5}. Hello, ${MS1}."         
             }
         }
     }
