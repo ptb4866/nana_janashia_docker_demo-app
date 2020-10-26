@@ -14,7 +14,11 @@ pipeline {
             }
             steps {
                 echo "Hello, ${MS1}. Hello, ${MS2}. Hello, ${MS3}. Hello, ${MS4}"   
-                echo "${params}"      
+                env.MS1_TO_DEPLOY = MS1
+                env.MS2_TO_DEPLOY = MS2
+                env.MS3_TO_DEPLOY = MS3
+                env.MS4_TO_DEPLOY = MS4
+                echo "${env}"      
             }
         }
         stage('Select single service') {
@@ -25,8 +29,9 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${MS5}."     
-                echo "${params}"  
+                echo "Hello, ${MS5}."  
+                env.MS5_TO_DEPLOY = MS5
+                echo "${env}"  
             }
         }
     }
