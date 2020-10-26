@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Select micro services') {
             input {
-                message "Select all micro services to deploy?"
+                message "Select all micro services to deploy"
                 ok "All selected!"
                 parameters {
                     choice(name: 'MS1', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'input ms')
