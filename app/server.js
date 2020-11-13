@@ -1,9 +1,9 @@
-var express = require('express');
-var path = require('path');
-var fs = require('fs');
-var MongoClient = require('mongodb').MongoClient;
-var bodyParser = require('body-parser');
-var app = express();
+let express = require('express');
+let path = require('path');
+let fs = require('fs');
+let MongoClient = require('mongodb').MongoClient;
+let bodyParser = require('body-parser');
+let app = express();
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -15,23 +15,29 @@ app.get('/', function (req, res) {
   });
 
 app.get('/profile-picture', function (req, res) {
-  var img = fs.readFileSync('/home/app/images/profile-1.jpg');
+  let img = fs.readFileSync(path.join(__dirname, "images/profile-1.jpg"));
   res.writeHead(200, {'Content-Type': 'image/jpg' });
   res.end(img, 'binary');
 });
 
-app.post('/update-profile', function (req, res) {
-  var userObj = req.body;
+// use when starting application locally
+let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 
-  MongoClient.connect("mongodb://admin:password@mongodb", function (err, client) {
+// use when starting application as docker container
+let mongoUrlDocker = "mongodb://admin:password@mongodb";
+
+app.post('/update-profile', function (req, res) {
+  let userObj = req.body;
+
+  MongoClient.connect(mongoUrlLocal, function (err, client) {
     if (err) throw err;
 
-    var db = client.db('my-db');
+    let db = client.db('my-db');
     userObj['userid'] = 1;
-    
-    var myquery = { userid: 1 };
-    var newvalues = { $set: userObj };
-    
+
+    let myquery = { userid: 1 };
+    let newvalues = { $set: userObj };
+
     db.collection("users").updateOne(myquery, newvalues, {upsert: true}, function(err, res) {
       if (err) throw err;
       client.close();
@@ -43,20 +49,20 @@ app.post('/update-profile', function (req, res) {
 });
 
 app.get('/get-profile', function (req, res) {
-  var response = {};
+  let response = {};
   // Connect to the db
-  MongoClient.connect("mongodb://admin:password@mongodb", function (err, client) {
+  MongoClient.connect(mongoUrlLocal, function (err, client) {
     if (err) throw err;
 
-    var db = client.db('my-db');
+    let db = client.db('my-db');
 
-    var myquery = { userid: 1 };
-    
+    let myquery = { userid: 1 };
+
     db.collection("users").findOne(myquery, function (err, result) {
       if (err) throw err;
       response = result;
       client.close();
-      
+
       // Send response
       res.send(response ? response : {});
     });
