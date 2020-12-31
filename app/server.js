@@ -27,7 +27,10 @@ let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 let mongoUrlDocker = "mongodb://admin:password@mongodb";
 
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
-let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true }
+let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+
+// "user-account" in demo with docker. "my-db" in demo with docker-compose
+let databaseName = "my-db";
 
 app.post('/update-profile', function (req, res) {
   let userObj = req.body;
@@ -35,7 +38,7 @@ app.post('/update-profile', function (req, res) {
   MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
-    let db = client.db('user-account');
+    let db = client.db(databaseName);
     userObj['userid'] = 1;
 
     let myquery = { userid: 1 };
@@ -57,7 +60,7 @@ app.get('/get-profile', function (req, res) {
   MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
-    let db = client.db('user-account');
+    let db = client.db(databaseName);
 
     let myquery = { userid: 1 };
 
@@ -75,4 +78,3 @@ app.get('/get-profile', function (req, res) {
 app.listen(3000, function () {
   console.log("app listening on port 3000!");
 });
-
