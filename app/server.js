@@ -35,7 +35,7 @@ app.post('/update-profile', function (req, res) {
   MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
-    let db = client.db('my-db');
+    let db = client.db('user-account');
     userObj['userid'] = 1;
 
     let myquery = { userid: 1 };
@@ -57,7 +57,7 @@ app.get('/get-profile', function (req, res) {
   MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
-    let db = client.db('my-db');
+    let db = client.db('user-account');
 
     let myquery = { userid: 1 };
 
